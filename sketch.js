@@ -56,11 +56,11 @@ var logH, logHGroup;
 var hurtS;
 var pointUpS;
 var musicS;
-var lane1 = 76;
-var lane2 = 360;
-var lane3 = 654;
-var screenWidthH = width/2;
-var screenHeightH = height/2;
+var lane1 = 63;
+var lane2 = 300;
+var lane3 = 545;
+var screenWidthH = 1450/2;
+var screenHeightH = 600/2;
 
 
 function preload() {
@@ -103,49 +103,49 @@ function setup() {
   title = createSprite(screenWidthH, screenHeightH, 400, 400);
   title.addImage("titl", titleI);
 
-  aKey = createSprite(94, 240, 200, 200);
+  aKey = createSprite(91, 200, 200, 200);
   aKey.addImage("ake", aKeyI);
 
-  dKey = createSprite(298, 240, 200, 200);
+  dKey = createSprite(290, 200, 200, 200);
   dKey.addImage("dke", dKeyI);
 
   easyB = createSprite(screenWidthH, screenHeightH, 400, 400);
   easyB.addImage("eas", easyBI);
-  easyB.scale = 0.75;
+  easyB.scale = 0.55;
 
-  hardB = createSprite(screenWidthH, 600, 400, 400);
+  hardB = createSprite(screenWidthH, 500, 400, 400);
   hardB.addImage("har", hardBI);
-  hardB.scale = 0.75;
+  hardB.scale = 0.55;
 
-  mainMenu = createSprite(100,654, 200, 200);
+  mainMenu = createSprite(94,530, 200, 200);
   mainMenu.addImage("mai", mainMenuI);
   mainMenu.debug = true;
-  mainMenu.scale = 1.3;
+  mainMenu.scale = 1;
   mainMenu.setCollider("rectangle", 0, 10, 190, 90);
 
   pauseScreen = createSprite(screenWidthH, screenHeightH, 400, 400);
   pauseScreen.addImage("pause", pauseScreenI);
 
-  start = createSprite(screenWidthH, 480, 400, 400);
+  start = createSprite(screenWidthH, 400, 400, 400);
   start.addImage("sta", startI);
-  start.scale = 0.75
+  start.scale = 0.55;
 
-  pause = createSprite(1284, 23, 400, 400);
+  pause = createSprite(1271, 30, 400, 400);
   pause.addImage("pau", pauseI);
 
-  truck = createSprite(196, lane2, 400, 400);
+  truck = createSprite(185, lane2, 400, 400);
   truck.addImage("tru", truckI);
   truck.scale = 0.75;
   truck.setCollider("rectangle", 0, 0, 450,150);
   truck.debug = false;
 
-  next = createSprite(screenWidthH, 554, 20, 20);
+  next = createSprite(screenWidthH, 500, 20, 20);
   next.addImage("nex", nextI);
 
   tutorial = createSprite(screenWidthH, screenHeightH, 400, 400);
   tutorial.addImage("tut", tutorialI);
 
-  restart = createSprite(screenWidthH, 303, 20, 20);
+  restart = createSprite(screenWidthH, 260, 20, 20);
   restart.addImage("res", restartI);
   restart.scale = 4;
 
@@ -153,15 +153,15 @@ function setup() {
   gameover.addImage("gam", gameoverI);
   gameover.depth = -6;
   
-  heart1 = createSprite(1416,20,400,400);
+  heart1 = createSprite(1342,16,400,400);
   heart1.addImage("hear", heartI);
   heart1.scale = 0.75;
   
-  heart2 = createSprite(1461,20,400,400);
+  heart2 = createSprite(1380,16,400,400);
   heart2.addImage("hear", heartI);
   heart2.scale = 0.75;
   
-  heart3 = createSprite(1506,20,400,400);
+  heart3 = createSprite(1420,16,400,400);
   heart3.addImage("hear", heartI);
   heart3.scale = 0.75;
 
@@ -702,7 +702,7 @@ function spawnTraffic() {
     var ro = Math.round(random(1, 3));
     traffic = createSprite(1600, 0, 20, 20);
     traffic.addImage("tra", trafficI);
-    traffic.scale = 1;
+    traffic.scale = 0.75;
     if (ro === 1) {
       traffic.y = lane1;
     } else if (ro === 2) {
@@ -741,6 +741,7 @@ function spawnBoxes() {
     boxp.addImage("box", boxI);
     boxp.setCollider("rectangle", 0,0,80,100);
     boxp.debug = true;
+    boxp.scale = 0.75;
 
     if(diffuculty === "normal") {
       boxp.velocityX = (-20 - (3*score / 5));
@@ -810,17 +811,17 @@ function spawnCoin() {
 
   function spawnLog(){
     if (frameCount % 180 === 0 && score > 10) {
-      var rl = Math.round(random(1, 4));
+      var rl = Math.round(random(1, 2));
       log = createSprite(1540, 0, 20, 20);
       log.addImage("log", logI);
       log.setCollider("rectangle", 0, 0, 50, 450);
       log.depth = truck.depth-1;
-      log.scale = 1.5;
+      log.scale = 1;
       logH = createSprite(1540, 0, 10, 10);
       logH.setCollider("rectangle", 0, 0, 50, 1500);
       logH.visible = false;
       logH.depth = log.depth-1;
-      logH.scale = 1.5;
+      logH.scale = 1;
   
   
       if (diffuculty === "normal") {
@@ -845,17 +846,11 @@ function spawnCoin() {
       logGroup.add(log);
       obstacleGroup.add(log);
       if (rl === 1) {
-        log.y = 270;
-        logH.y = 270;
+        log.y = 100;
+        logH.y = 100;
       } else if (rl === 2) {
-        log.y = 725;
-        logH.y = 725;
-      } else if (rl === 3) {
-        log.y = 270;
-        logH.y = 270;
-      } else if (rl === 4) {
-        log.y = 725;
-        logH.y = 725;
+        log.y = 500;
+        logH.y = 500;
       }
       logH.lifetime = 100;
       logHGroup.add(logH);
